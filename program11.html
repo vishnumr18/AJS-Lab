@@ -1,0 +1,31 @@
+<!-- Convert lowercase words into uppercase -->
+
+
+<html ng-app="ltu">
+    <head>
+        <title>Lowercase to Uppercase</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('ltu',[])
+            app.controller('ltuCtrl',function($scope){
+                $scope.list = ['rama','shiva','hanuman','krishna','radha']
+            })
+        </script>
+    </head>
+    <body ng-controller="ltuCtrl">
+        <h1>Lowercase to Uppercase</h1><br>
+        <h3>Original Names</h3>
+        <table>
+            <tr ng-repeat="name in list">
+                <td>{{name}}</td>
+            </tr>
+        </table><br>
+        <h3>Names in Uppercase</h3>
+        <table>
+            <tr ng-repeat="name in list">
+                <td>{{name | uppercase}}</td>
+            </tr>
+        </table>
+
+    </body>
+</html>

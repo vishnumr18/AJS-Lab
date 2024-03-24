@@ -1,0 +1,40 @@
+<!-- Maintain Collection of items -->
+
+<html ng-app="item">
+    <head>
+        <title>Item Collection</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('item', [])
+            app.controller('itemCtrl', function($scope){
+                $scope.list=['Item1', 'Item2','Item3']
+
+                $scope.add = function(){
+                    if($scope.newItm){
+                        $scope.list.push($scope.newItm)
+                    }else{
+                        alert('Enter New Items')
+                    }
+                    $scope.newItm=''
+                }
+
+                $scope.rem = function(index){
+                    $scope.list.splice(index,1)
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="itemCtrl">
+        <h1>Item Collection</h1>
+        Enter Item: <input type="text" ng-model="newItm">
+        <button ng-click="add()">Add Item</button>
+        <br>
+
+        <table>
+            <tr ng-repeat="item in list">
+                <td>{{item}}</td>
+                <td><button ng-click="rem()">Remove</button></td>
+            </tr>
+        </table>
+    </body>
+</html>
