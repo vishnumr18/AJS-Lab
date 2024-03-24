@@ -1,0 +1,46 @@
+<!-- Dispalay the details of the students and their CGPA -->
+
+<html ng-app="stud">
+    <head>
+        <title>Student Details</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('stud',[])
+            app.controller('studCtrl', function($scope){
+                $scope.list = []
+
+                $scope.addStud = function(){
+                    if($scope.name && $scope.cgpa){
+                        $scope.list.push({
+                            name: $scope.name,
+                            cgpa: $scope.cgpa
+                        })
+                        $scope.name=''
+                        $scope.cgpa=''
+                    }
+                }
+
+                $scope.remStu = function(index){
+                    $scope.list.splice(index,1)
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="studCtrl">
+        <h1>Student Details</h1>
+        <label for="">Enter Name</label>
+        <input type="text" ng-model="name">
+        <label for="">Enter CGPA</label>
+        <input type="number" ng-model="cgpa">
+        <br>
+        <button ng-click="addStud()">Add</button>
+        <br>
+        <h2>Totla Number of Dtudents are: {{list.length}}</h2>
+
+        <table>
+            <tr ng-repeat="stu in list">
+                <td>Name: {{stu.name}} CGPA: {{stu.cgpa}} <button ng-click="remStu($index)">Remove</button></td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!-- Create a Calculater for doing basic math operation -->
+
+<html ng-app="calc">
+    <head>
+        <title>Simple Calculater</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('calc',[])
+            app.controller('calcCtrl',function($scope){
+                $scope.calc = function(){
+                    switch($scope.opt){
+                        case '+': $scope.res = $scope.n1 + $scope.n2
+                        break
+                        case '-': $scope.res = $scope.n1 - $scope.n2
+                        break
+                        case '*': $scope.res = $scope.n1 * $scope.n2
+                        break
+                        case '/': if($scope.n2 == 0){
+                                        alert("Cannot divide by 0")
+                                    }else{
+                                        $scope.res = $scope.n1 / $scope.n2
+                                    }
+                    }
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="calcCtrl"> 
+        <h1>Simple Calculater</h1>
+
+        <label for="">Enter First Number</label>
+        <input type="number" ng-model="n1">
+        <select ng-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <label for="">Enter Second Number</label>
+        <input type="number" ng-model="n2">
+        <br>
+        <button ng-click="calc()">Enter</button>
+
+        <p>Result: {{res}}</p>
+    </body>
+</html>

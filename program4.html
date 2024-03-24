@@ -1,0 +1,44 @@
+<!-- Calculate the factorial and square for the number -->
+
+<html ng-app="factSq">
+    <head>
+        <title>Factorial and Square Calculater</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('factSq',[])
+            app.controller('factSqCtrl',function($scope){
+                $scope.fact = function(){
+                    if($scope.inpNum >=0){
+                        $scope.facRes = fact($scope.inpNum)
+                    }else{
+                        alert("Can not calculate Factorial")
+                    }
+                }
+
+                $scope.sqr = function(){
+                    $scope.sqRes = $scope.inpNum * $scope.inpNum
+                }
+
+                function fact(n){
+                    if(n==0 || n==1){
+                        return 1
+                    }
+                    else{
+                        return n* fact(n-1)
+                    }
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="factSqCtrl">
+        <h1>Factorial and Square Calculater</h1>
+        <label for="">Enter a Number</label>
+        <input type="number" ng-model="inpNum">
+        <br>
+        <button ng-click="fact()">Factorial</button>
+        <label for="">Factorial of the number is {{facRes}}</label>
+        <br>
+        <button ng-click="sqr()">Square</button>
+        <label for="">Square of the number is {{sqRes}}</label>
+    </body>
+</html>

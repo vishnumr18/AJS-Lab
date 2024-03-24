@@ -1,0 +1,58 @@
+<!-- Crate Sample To-Do application -->
+
+<html ng-app="todo">
+    <head>
+        <title>To-Do Application</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('todo',[])
+            app.controller('todoCtrl',function($scope){
+                $scope.list = ['Task1', 'Task2']
+
+                $scope.add = function(){
+                    if($scope.newTask){
+                        $scope.list.push($scope.newTask)
+                    }else{
+                        alert('Enter a Task')
+                    }
+                }
+
+                $scope.edit = function(index){
+                    var inp = prompt('Update Task')
+                    if(inp !== null){
+                        $scope.list.splice(index,1,inp)
+                    }else{
+                        alert('No Task enterd')
+                    }
+                }
+
+                $scope.del = function(index){
+                    $scope.list.splice(index,1)
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="todoCtrl">
+        <h1>To-Do Application</h1>
+        Enter New Task: <input type="text" ng-model="newTask">
+        <button ng-click="add()">Add Task</button>
+        <br><br>
+        <table>
+            <thead>
+                <tr>Task  </tr>
+                <tr>  Actions</tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in list">
+                    <td>{{task}}</td>
+                    <td>
+                        <button ng-click="edit($index)">Edit</button>
+                        <button ng-click="del($index)">Delete</button>
+                        <input type="checkbox" >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

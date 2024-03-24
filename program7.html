@@ -1,0 +1,80 @@
+<!-- CRUD application for managing users -->
+
+<html ng-app="user">
+    <head>
+        <title>User Management</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('user',[])
+            app.controller('userCtrl',function($scope){
+                $scope.list=[{name:'Vishnu', email:'vishnu@gmail.com', age:20}]
+
+                $scope.add = function(){
+                    if($scope.name && $scope.email && $scope.age){
+                        $scope.list.push({
+                            name: $scope.name,
+                            email: $scope.email,
+                            age: $scope.age
+                        })
+                        $scope.name=''
+                        $scope.email=''
+                        $scope.age=''
+                    }else{
+                        alert("Enter Details")
+                    }
+                }
+
+                $scope.edit = function(index){
+                    var uname = prompt('Update Name',$scope.list[index].name)
+                    var uemail = prompt('Update Email',$scope.list[index].email)
+                    var uage = prompt('Update age',$scope.list[index].age)
+
+                    if(uname !== null && uemail !==null && uage !==null){
+                        
+                        var updateUser = {name: uname, email:uemail, age:uage}
+                        $scope.list.splice(index,1,updateUser)
+                    }
+                }
+
+                $scope.del = function(index){
+                    $scope.list.splice(index,1)
+                }
+
+            })
+        </script>
+    </head>
+    <body ng-controller="userCtrl">
+        <h1>User Management</h1>
+        Enter Name: <input type="text" ng-model="name"><br>
+        Enter Email: <input type="email" ng-model="email"><br>
+        Enter Age: <input type="number" ng-model="age"><br>
+        <button ng-click="add()">Add User</button>
+
+        <br><br>
+        <table >
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usr in list">
+                    <td>{{usr.name}}</td>
+                    <td>{{usr.email}}</td>
+                    <td>{{usr.age}}</td>
+                    <td>
+                        <button ng-click="edit($index)">Edit</button>
+                        <button ng-click="del($index)">Delete</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>
+
+

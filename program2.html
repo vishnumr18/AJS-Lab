@@ -1,0 +1,43 @@
+<!-- Create a Shopping list with add and remove function-->
+
+<html ng-app="shop">
+    <head>
+        <title>Shopping List</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('shop',[])
+            app.controller('shopCtrl',function($scope){
+                $scope.list = ['Apple','Grapes']
+
+                $scope.addItm = function(){
+                    if($scope.newItm){
+                        $scope.list.push($scope.newItm)
+                        $scope.newItm=''
+                    }else{
+                        alert('Enter Item Name')
+                    }
+                }
+
+                $scope.remItm = function(index){
+                    $scope.list.splice(index,1)
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="shopCtrl">
+        <h1>Shopping List</h1>
+        <table>
+            <tr ng-repeat="itm in list">
+                <td>{{itm}}</td>
+                <td>
+                    <button ng-click="remItm()">Remove Item</button>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <h2 for="">Enter Item Name</h2>
+        <input type="text" ng-model="newItm">
+        <button ng-click="addItm()">Add Item</button>
+
+    </body>
+</html>

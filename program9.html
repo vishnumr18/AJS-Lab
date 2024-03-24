@@ -1,0 +1,32 @@
+<!-- Search the user by name and salary -->
+
+<html ng-app="emp">
+<head>
+    <title>Employee Details</title>
+    <script src="angular.js"></script>
+    <script>
+        var app = angular.module('emp',[])
+        app.controller('empCtrl',function($scope){
+            $scope.list = [
+                {name:'Vishnu', salary:170000},
+                {name:'Raghu', salary:150000},
+                {name:'Harsha', salary:125000}
+            ]
+        })
+    </script>
+</head>
+
+<body ng-controller="empCtrl">
+    <h1>Employee Details</h1>
+
+    Search by Name: <input type="text" ng-model="searchName">
+    Search by Salary: <input type="number" ng-model="searchSalary">
+    <br>
+    <table>
+        <tr ng-repeat="emp in list | filter: { name: searchName, salary: searchSalary }">
+            <td>{{ emp.name }}</td>
+            <td>Salary: Rs{{ emp.salary }}</td>
+        </tr>
+    </table>
+</body>
+</html>

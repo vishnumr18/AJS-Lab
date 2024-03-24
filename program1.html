@@ -1,0 +1,32 @@
+<!-- Get the users first name and last name and display the full name -->
+
+<html ng-app="appName">
+    <head>
+        <title>Full Name</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('appName',[])
+            app.controller('appCtrl',function($scope){
+                $scope.fname='Vishnu'
+                $scope.lname='M R'
+
+                $scope.display = function(){
+                    $scope.fullname= $scope.fname+ ' ' +$scope.lname
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="appCtrl">
+        <h1>Displaying Full Name</h1>
+        <br>
+        <label for="">Enter First Name</label>
+        <input type="text" ng-model="fname">
+        <br>
+        <label for="">Enter Last Name</label>
+        <input type="text" ng-model="lname">
+        <br>
+        <button ng-click="display()">ENTER</button>
+        <br>
+        <label for="">Full Name is {{fullname}}</label>
+    </body>
+</html>

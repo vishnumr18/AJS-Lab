@@ -1,0 +1,26 @@
+<!-- User Login Form -->
+
+<html ng-app="login">
+    <head>
+        <title>Login Form</title>
+        <script src="angular.js"></script>
+        <script>
+            var app = angular.module('login',[])
+            app.controller('loginCtrl',function($scope){
+                $scope.login = function(){
+                    if($scope.uname =='vishnu' && $scope.upswd == 'vishnu'){
+                        alert('Login successful')
+                    }else{
+                        alert('Login Unsuccessful')
+                    }
+                }
+            })
+        </script>
+    </head>
+    <body ng-controller="loginCtrl">
+        <h1>Login Form</h1>
+        Enter User Name: <input type="text" ng-model="uname"><br>
+        Enter Password: <input type="password" ng-model="upswd"> <br>  
+        <button ng-click="login()">Login</button>     
+    </body>
+</html>
