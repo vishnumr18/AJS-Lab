@@ -2,7 +2,7 @@
 
 <html ng-app="calc">
     <head>
-        <title>Simple Calculater</title>
+        <title>Calculater</title>
         <script src="angular.js"></script>
         <script>
             var app = angular.module('calc',[])
@@ -15,32 +15,28 @@
                         break
                         case '*': $scope.res = $scope.n1 * $scope.n2
                         break
-                        case '/': if($scope.n2 == 0){
-                                        alert("Cannot divide by 0")
-                                    }else{
-                                        $scope.res = $scope.n1 / $scope.n2
-                                    }
+                        case '/':
+                            if($scope.n2 == 0){
+                                alert('Can not Divide by 0')
+                            }else{
+                                $scope.res = $scope.n1 + $scope.n2
+                            }
                     }
                 }
             })
         </script>
     </head>
-    <body ng-controller="calcCtrl"> 
+    <body ng-controller="calcCtrl">
         <h1>Simple Calculater</h1>
-
-        <label for="">Enter First Number</label>
-        <input type="number" ng-model="n1">
+        Enter First Number: <input type="number" ng-model="n1">
         <select ng-model="opt">
             <option value="+">+</option>
             <option value="-">-</option>
             <option value="*">*</option>
             <option value="/">/</option>
         </select>
-        <label for="">Enter Second Number</label>
-        <input type="number" ng-model="n2">
-        <br>
-        <button ng-click="calc()">Enter</button>
-
-        <p>Result: {{res}}</p>
+        Enter Second Number: <input type="number" ng-model="n2">
+        <br><button ng-click="calc()">Enter</button><br>
+        <h3>Result: {{res}}</h3>
     </body>
 </html>

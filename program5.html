@@ -1,45 +1,48 @@
 <!-- Dispalay the details of the students and their CGPA -->
 
-<html ng-app="stud">
+<html ng-app="stu">
     <head>
-        <title>Student Details</title>
+        <title>Students Details</title>
         <script src="angular.js"></script>
         <script>
-            var app = angular.module('stud',[])
-            app.controller('studCtrl', function($scope){
-                $scope.list = []
+            var app = angular.module('stu',[])
+            app.controller('stuCtrl',function($scope){
+                $scope.list =[]
 
-                $scope.addStud = function(){
+                $scope.add = function(){
                     if($scope.name && $scope.cgpa){
                         $scope.list.push({
-                            name: $scope.name,
-                            cgpa: $scope.cgpa
+                            name:$scope.name,
+                            cgpa:$scope.cgpa
                         })
                         $scope.name=''
                         $scope.cgpa=''
+                    }else{
+                        alert("Enter the details")
                     }
                 }
 
-                $scope.remStu = function(index){
+                $scope.rem = function(index){
                     $scope.list.splice(index,1)
                 }
             })
         </script>
     </head>
-    <body ng-controller="studCtrl">
+    <body ng-controller="stuCtrl">
         <h1>Student Details</h1>
-        <label for="">Enter Name</label>
-        <input type="text" ng-model="name">
-        <label for="">Enter CGPA</label>
-        <input type="number" ng-model="cgpa">
-        <br>
-        <button ng-click="addStud()">Add</button>
-        <br>
-        <h2>Totla Number of Dtudents are: {{list.length}}</h2>
-
+        Enter Name: <input type="text" ng-model="name">
+        Enter CGPA: <input type="number" ng-model="cgpa">
+        <button ng-click="add()">Add Student</button><br>
+        <h2>Total students: {{list.length}}</h2>
         <table>
-            <tr ng-repeat="stu in list">
-                <td>Name: {{stu.name}} CGPA: {{stu.cgpa}} <button ng-click="remStu($index)">Remove</button></td>
+            <tr>
+                <th>Name</th>
+                <th>CGPA</th>
+            </tr>
+            <tr ng-repeat="stud in list">
+                <td>{{stud.name}}</td>
+                <td>{{stud.cgpa}}</td>
+                <td><button ng-click="rem($index)">Remove</button></td>
             </tr>
         </table>
     </body>

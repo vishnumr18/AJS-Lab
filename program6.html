@@ -5,28 +5,25 @@
         <title>To-Do Application</title>
         <script src="angular.js"></script>
         <script>
-            var app = angular.module('todo',[])
+            var app= angular.module('todo',[])
             app.controller('todoCtrl',function($scope){
-                $scope.list = ['Task1', 'Task2']
+                $scope.list = ['Task1','Task2','Task3']
 
                 $scope.add = function(){
-                    if($scope.newTask){
-                        $scope.list.push($scope.newTask)
+                    if($scope.newTsk){
+                        $scope.list.push($scope.newTsk)
                     }else{
-                        alert('Enter a Task')
+                        alert('Enter New Task')
                     }
                 }
 
                 $scope.edit = function(index){
-                    var inp = prompt('Update Task')
-                    if(inp !== null){
-                        $scope.list.splice(index,1,inp)
-                    }else{
-                        alert('No Task enterd')
+                    var update = prompt("Enter Updated Task")
+                    if(update !== null){
+                        $scope.list.splice(index,1,update)
                     }
                 }
-
-                $scope.del = function(index){
+                $scope.rem = function(index){
                     $scope.list.splice(index,1)
                 }
             })
@@ -34,25 +31,23 @@
     </head>
     <body ng-controller="todoCtrl">
         <h1>To-Do Application</h1>
-        Enter New Task: <input type="text" ng-model="newTask">
-        <button ng-click="add()">Add Task</button>
-        <br><br>
-        <table>
-            <thead>
-                <tr>Task  </tr>
-                <tr>  Actions</tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="task in list">
-                    <td>{{task}}</td>
-                    <td>
-                        <button ng-click="edit($index)">Edit</button>
-                        <button ng-click="del($index)">Delete</button>
-                        <input type="checkbox" >
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
+        Enter New Task: <input type="text" ng-model="newTsk">
+        <button ng-click="add()">Add Task</button> <br>
+        <h3>Number of Task: {{list.length}}</h3>
+        <table>
+            <tr>
+                <th>Task</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat="task in list">
+                <td>{{task}}</td>
+                <td>
+                    <button ng-click="edit($index)">Edit</button>
+                    <button ng-click="rem($index)">Remove Task</button>
+                </td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
     </body>
 </html>

@@ -1,32 +1,27 @@
 <!-- Get the users first name and last name and display the full name -->
 
-<html ng-app="appName">
+<html ng-app="name">
     <head>
         <title>Full Name</title>
         <script src="angular.js"></script>
         <script>
-            var app = angular.module('appName',[])
-            app.controller('appCtrl',function($scope){
-                $scope.fname='Vishnu'
-                $scope.lname='M R'
-
+            var app = angular.module('name',[])
+            app.controller('nameCtrl',function($scope){
                 $scope.display = function(){
-                    $scope.fullname= $scope.fname+ ' ' +$scope.lname
+                    if($scope.fname && $scope.lname){
+                        $scope.fullName = $scope.fname+ " " +$scope.lname
+                    }
                 }
             })
         </script>
     </head>
-    <body ng-controller="appCtrl">
-        <h1>Displaying Full Name</h1>
+    <body ng-controller="nameCtrl">
+        <h1>Full Name Displayer</h1><br>
+        Enter First Name: <input type="text" ng-model="fname">
+        Enter Last Name: <input type="text" ng-model="lname">
         <br>
-        <label for="">Enter First Name</label>
-        <input type="text" ng-model="fname">
-        <br>
-        <label for="">Enter Last Name</label>
-        <input type="text" ng-model="lname">
-        <br>
-        <button ng-click="display()">ENTER</button>
-        <br>
-        <label for="">Full Name is {{fullname}}</label>
+        <button ng-click="display()">Join</button><br>
+
+        <h3>Fill Name is: {{fullName}}</h3>
     </body>
 </html>

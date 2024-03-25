@@ -2,43 +2,38 @@
 
 <html ng-app="factSq">
     <head>
-        <title>Factorial and Square Calculater</title>
+        <title>Factorial & Square of Numbers</title>
         <script src="angular.js"></script>
         <script>
             var app = angular.module('factSq',[])
             app.controller('factSqCtrl',function($scope){
                 $scope.fact = function(){
-                    if($scope.inpNum >=0){
-                        $scope.facRes = fact($scope.inpNum)
+                    if($scope.input>=0){
+                        $scope.factRes = fact($scope.input)
                     }else{
-                        alert("Can not calculate Factorial")
+                        alert("Can not find the Factorial of Number!!!")
+                    }
+                }
+                function fact(n){
+                    if(n==0 || n==1){
+                        return 1;
+                    }else{
+                        return n*fact(n-1);
                     }
                 }
 
                 $scope.sqr = function(){
-                    $scope.sqRes = $scope.inpNum * $scope.inpNum
-                }
-
-                function fact(n){
-                    if(n==0 || n==1){
-                        return 1
-                    }
-                    else{
-                        return n* fact(n-1)
-                    }
+                    $scope.sqRes = $scope.input * $scope.input
                 }
             })
         </script>
     </head>
     <body ng-controller="factSqCtrl">
-        <h1>Factorial and Square Calculater</h1>
-        <label for="">Enter a Number</label>
-        <input type="number" ng-model="inpNum">
-        <br>
-        <button ng-click="fact()">Factorial</button>
-        <label for="">Factorial of the number is {{facRes}}</label>
-        <br>
-        <button ng-click="sqr()">Square</button>
-        <label for="">Square of the number is {{sqRes}}</label>
+        <h1>Factorial & Square of Numbers</h1>
+        Enter a Number: <input type="number" ng-model="input"><br>
+        <button ng-click="fact()">Factorial</button><br>
+        Factorial of number: {{factRes}} <br>
+        <button ng-click="sqr()">Square</button><br>
+        Square of number: {{sqRes}}
     </body>
 </html>
