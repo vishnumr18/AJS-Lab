@@ -6,52 +6,51 @@
         <script src="angular.js"></script>
         <script>
             var app = angular.module('user',[])
-            app.controller('userCtrl',function($scope){
-                $scope.list=[{name:'Vishnu', email:'vishnu@gmail.com', age:20}]
+            app.controller('usrtCtrl',function($scope){
+                $scope.list = [
+                    {name: 'Vishnu M R', email:'vishnu@gmai.com', age:20},
+                    {name: 'Raghu', email:'vishnu@gmai.com', age:20}
+                ]
 
                 $scope.add = function(){
                     if($scope.name && $scope.email && $scope.age){
                         $scope.list.push({
-                            name: $scope.name,
-                            email: $scope.email,
-                            age: $scope.age
+                            name:$scope.name,
+                            email:$scope.email,
+                            age:$scope.age
                         })
                         $scope.name=''
                         $scope.email=''
                         $scope.age=''
-                    }else{
-                        alert("Enter Details")
                     }
                 }
 
                 $scope.edit = function(index){
-                    var uname = prompt('Update Name',$scope.list[index].name)
-                    var uemail = prompt('Update Email',$scope.list[index].email)
-                    var uage = prompt('Update age',$scope.list[index].age)
+                    name = prompt('Update Name', $scope.list[index].name)
+                    email = prompt('Update Email', $scope.list[index].email)
+                    age = prompt('Update Age',$scope.list[index].age)
 
-                    if(uname !== null && uemail !==null && uage !==null){
-                        
-                        var updateUser = {name: uname, email:uemail, age:uage}
-                        $scope.list.splice(index,1,updateUser)
+                    if(name!== null && email !== null && age !==null){
+                        update = {name:name, email:email, age:age}
+                        $scope.list.splice(index,1,update)
                     }
                 }
 
                 $scope.del = function(index){
                     $scope.list.splice(index,1)
                 }
-
             })
         </script>
     </head>
-    <body ng-controller="userCtrl">
+    <body ng-controller="usrtCtrl">
         <h1>User Management</h1>
-        Enter Name: <input type="text" ng-model="name"><br>
-        Enter Email: <input type="email" ng-model="email"><br>
+        Enter Name: <input type="text" ng-model="name">
+        Enter Email: <input type="email" ng-model="email">
         Enter Age: <input type="number" ng-model="age"><br>
-        <button ng-click="add()">Add User</button>
-
+        <button ng-click="add()"> Add User</button>
         <br><br>
-        <table >
+
+        <table>
             <thead>
                 <tr>
                     <th>Name</th>
@@ -61,20 +60,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="usr in list">
-                    <td>{{usr.name}}</td>
-                    <td>{{usr.email}}</td>
-                    <td>{{usr.age}}</td>
+                <tr ng-repeat="user in list">
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
                     <td>
                         <button ng-click="edit($index)">Edit</button>
                         <button ng-click="del($index)">Delete</button>
-
                     </td>
                 </tr>
             </tbody>
         </table>
-
     </body>
 </html>
-
-

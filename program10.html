@@ -1,21 +1,19 @@
 <!-- Maintain Collection of items -->
 
-<html ng-app="item">
+<html ng-app="items">
     <head>
-        <title>Item Collection</title>
+        <title>Items Maintainence</title>
         <script src="angular.js"></script>
         <script>
-            var app = angular.module('item', [])
-            app.controller('itemCtrl', function($scope){
-                $scope.list=['Item1', 'Item2','Item3']
+            var app = angular.module('items',[])
+            app.controller('itemsCtrl',function($scope){
+                $scope.list = ['Item1', 'Item2', 'Item3']
 
                 $scope.add = function(){
-                    if($scope.newItm){
-                        $scope.list.push($scope.newItm)
-                    }else{
-                        alert('Enter New Items')
+                    if($scope.newItem){
+                        $scope.list.push($scope.newItem)
+                        $scope.newItem=''
                     }
-                    $scope.newItm=''
                 }
 
                 $scope.rem = function(index){
@@ -24,17 +22,29 @@
             })
         </script>
     </head>
-    <body ng-controller="itemCtrl">
-        <h1>Item Collection</h1>
-        Enter Item: <input type="text" ng-model="newItm">
-        <button ng-click="add()">Add Item</button>
-        <br>
+    <body ng-controller="itemsCtrl">
+        <h1>Items Management</h1>
 
+        Enter New Item: <input type="text" ng-model="newItem">
+        <button ng-click="add()">Add Item</button><br><br>
+
+        <h2>Total Number of Items: {{list.length}}</h2>
+        <br>
         <table>
-            <tr ng-repeat="item in list">
-                <td>{{item}}</td>
-                <td><button ng-click="rem()">Remove</button></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="itm in list">
+                    <td>{{itm}}</td>
+                    <td>
+                        <button ng-click="rem($index)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </body>
 </html>

@@ -3,29 +3,31 @@
 
 <html ng-app="ltu">
     <head>
-        <title>Lowercase to Uppercase</title>
+        <title>Lowercase To Uppercase</title>
         <script src="angular.js"></script>
         <script>
             var app = angular.module('ltu',[])
             app.controller('ltuCtrl',function($scope){
-                $scope.list = ['rama','shiva','hanuman','krishna','radha']
+                $scope.list = ['shiva','rama','radha','krishna','hanuman','lakshmi']
             })
         </script>
     </head>
     <body ng-controller="ltuCtrl">
         <h1>Lowercase to Uppercase</h1><br>
+
         <h3>Original Names</h3>
         <table>
-            <tr ng-repeat="name in list">
-                <td>{{name}}</td>
-            </tr>
+            <table>
+                <tr ng-repeat="names in list">
+                    <td>{{names}}</td>
+                </tr>
+            </table>
         </table><br>
-        <h3>Names in Uppercase</h3>
+        <h3>Uppercase Names</h3>
         <table>
-            <tr ng-repeat="name in list">
-                <td>{{name | uppercase}}</td>
+            <tr ng-repeat="names in list">
+                <td>{{names | uppercase}}</td>
             </tr>
         </table>
-
     </body>
 </html>
